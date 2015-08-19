@@ -36,6 +36,10 @@ a:focus {
     color: #eb3812;
 }
 
+.NoDecoration{
+    text-decoration:none;
+}
+
 h1,
 h2,
 h3,

@@ -8,6 +8,9 @@ var numberOfVideos = 5;
 //Number of pictures in gallery -1
 var numberOfPictures = 21;
 
+//To keep track of video descriptions
+var previousVideoDescription;
+
 //Images source
 //var imagesPath = "img/photography/";
 
@@ -69,7 +72,7 @@ $(document).ready(function(){
     var documentoryCarousel = $("#documentoryCarousel");
     var videography = $("#videographyNav");
     var modalImage = $('#modalImage');
-    
+    previousVideoDescription = $('#videoDescription0');
     
     // Activate Carousel
     documentoryCarousel.carousel({interval: 4000});
@@ -92,6 +95,18 @@ $(document).ready(function(){
             modalImage.attr("src", $("#image" + array[1]).attr("src"));
         });
     }
+   
+    //Event handler for when a video changes, change description
+    documentoryCarousel.on('slid.bs.carousel', function () {
+        var carouselData = $(this).data('bs.carousel');
+        var currentIndex = carouselData.getItemIndex(carouselData.$element.find('.item.active'));
+        var changedVideoDescription = $("#videoDescription" + currentIndex);
+        
+        previousVideoDescription.hide();
+        changedVideoDescription.show();
+        previousVideoDescription = changedVideoDescription;
+        
+});
     
 });
 
